@@ -1,0 +1,7 @@
+configuratin {
+    modi: "window,run,drun,ssh,combi";
+    combi-modi:"run,drun";
+  }
+//@theme "/usr/share/rofi/themes/Paper.rasi"
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
