@@ -14,5 +14,4 @@ done
 echo "Choose new theme"
 read -r new_theme
 let "new_theme-=1"
-echo "${my_array[$new_theme]}"
-rm ~/.config/alacritty/alacritty.yml && cp ~/.config/alacritty/${my_array[$new_theme]} ~/.config/alacritty/alacritty.yml
+cp ~/.config/alacritty/${my_array[$new_theme]} ~/.config/alacritty/alacritty.yml
