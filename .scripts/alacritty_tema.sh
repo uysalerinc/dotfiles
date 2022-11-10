@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 my_array=($(ls ~/.config/alacritty | tr " " "\n"))
 my_array=( ${my_array[@]/alacritty.yml})
