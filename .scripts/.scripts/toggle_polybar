@@ -1,0 +1,10 @@
+#!/bin/env bash
+
+if [ -f "/tmp/polybarvisible" ]; then
+    polybar-msg cmd hide
+    rm /tmp/polybarvisible
+else
+    polybar-msg cmd show
+    touch /tmp/polybarvisible
+    
+fi
