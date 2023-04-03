@@ -1,0 +1,9 @@
+configuration {
+	modes: "window,drun,run,ssh,combi";
+	combi-modi: "window,drun";
+	font: "Hack Nerd Font Mono";
+	show-icons: true;
+	
+}
+
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
