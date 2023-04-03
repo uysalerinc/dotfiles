@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+
+import dbus
+
+def get_current_track_info():
+    bus = dbus.SessionBus()
+    try:
+        spotify = bus.get_object("org.mpris.MediaPlayer2.spotify",
+                                 "/org/mpris/MediaPlayer2")
+        metadata = spotify.Get("org.mpris.MediaPlayer2.Player", "Metadata",
+                               dbus_interface="org.freedesktop.DBus.Properties")
+        artist = str(metadata['xesam:artist'][0])
+        title = str(metadata['xesam:title'])
+        return " " + artist + " - " + title
+    except Exception as e:
+        return " Spotify is not running"
+
+print(get_current_track_info())
