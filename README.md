@@ -7,7 +7,7 @@
 - [Doom Emacs](https://github.com/doomemacs/doomemacs "Doom Emacs") for OrgMode
 - File Browser: [Ranger](https://github.com/ranger/ranger "Ranger") (CLI) [Nautilus](https://github.com/GNOME/nautilus "Nautilus") (GUI)
 
-##Other Dependencies
+## Other Dependencies
 
 | Dependency  | Description |  Where I Use It|
 | ------------ | ------------ |--|
