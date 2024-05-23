@@ -8,6 +8,7 @@
 - Editor: [Neovim](https://github.com/neovim/neovim "Neovim")
 - File Browser: [Ranger](https://github.com/ranger/ranger "Ranger") (CLI) [Nautilus](https://github.com/GNOME/nautilus "Nautilus") (GUI)
 - Shell: [Zsh](https://www.zsh.org/ "zsh") with [OhMyZsh](https://github.com/ohmyzsh/ohmyzsh "OhMyZsh")
+- Note Taking: Emacs
 
 ## Other Dependencies
 
@@ -17,4 +18,3 @@
 | Hack Nerd Font  |  Personal favorite Nerd Font with icons | Terminal and Neovim plugin dependencies |
 | Font Awesome 6 | Font and icon toolkit | Icons |
 | [feh](https://github.com/derf/feh "feh") | Image wiever | Wallpaper manager |
-| [Redshift](https://github.com/jonls/redshift "Redshift") | Color tempeture adjuster | Same as description |
