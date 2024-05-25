@@ -18,3 +18,5 @@
 | Hack Nerd Font  |  Personal favorite Nerd Font with icons | Terminal and Neovim plugin dependencies |
 | Font Awesome 6 | Font and icon toolkit | Icons |
 | [feh](https://github.com/derf/feh "feh") | Image wiever | Wallpaper manager |
+| Scrot | Screenshooter | Scripts |
+| xclip | Clipboard | Clipboard Manager |
