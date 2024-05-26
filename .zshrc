@@ -1,3 +1,4 @@
+fortune | cowsay
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -85,7 +86,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
 else
-  export EDITOR='code'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
