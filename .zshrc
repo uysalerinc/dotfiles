@@ -100,3 +100,4 @@ fi
 #Aliases
 alias v="nvim"
 alias cf="clear && hyfetch"
+alias clc="clear"
