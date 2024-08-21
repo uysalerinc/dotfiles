@@ -1,0 +1,110 @@
+#!/usr/bin/env sh
+
+# TODO: Remove grep pipe and use regex
+# TODO: execute TERMEDIT from default if given arg is valid config or script
+
+source config
+
+dwm_conf_path="~/suckless/dwm/src"
+st_conf_path="~/suckless/st/src/"
+dwmblocks_conf_path="~/suckless/dwmblocks"
+dmenu_conf_path="~/suckless/dmenu/src"
+dot_config_path="~/.config/"
+
+conf_list="$( (echo -e 'dwm\ndwmblocks\nst\ndmenu' && ls -1 ~/.config/)|sort)"
+
+
+default(){
+
+    prompt="-p Edit:"
+    sel_def="$(echo -e 'Configs\nScripts'|sort | dmenu $prompt)"
+    case "$sel_def" in
+        Configs) 
+            edit_configs;;
+        Scripts) 
+            select_script_group;;
+        *)
+            exit 0
+            ;;
+    esac
+    
+}
+select_script_group(){
+
+    sc_group="$(echo -e 'dwm\ndmenu\ngeneral\nconfig' | sort | dmenu -p 'Script Group')"
+    case "$sc_group" in
+        dwm) 
+            edit_dwm_scripts;;
+        dmenu) 
+            edit_dmenu_scripts;;
+        general) 
+            edit_general_scripts;;
+        config) 
+            edit_script_config;;
+        *)
+            exit 0;;
+    esac
+    
+}
+
+edit_dwm_scripts(){
+
+    dw_script="$(ls -p ~/.scripts/ | grep dwm |sort | dmenu -p 'dwm scripts:')"
+    if [[ -n $dw_script ]]; then
+        eval "$TERMEDIT $SCRIPTPATH$dw_script"
+        exit 0
+    fi
+}
+edit_dmenu_scripts(){
+
+    dm_script="$(ls -p ~/.scripts/ | grep dm |sort | dmenu -p 'dmenu scripts:')"
+    if [[ -n $dm_script ]]; then
+        eval "$TERMEDIT $SCRIPTPATH$dm_script"
+        exit 0
+    fi
+}
+edit_general_scripts(){
+
+    g_script="$(ls -p ~/.scripts/ | grep -v dm |grep -v dwm| grep -v -w config | dmenu -p 'General Scripts:')"
+    if [[ -n $g_script ]]; then
+        eval "$TERMEDIT $SCRIPTPATH$g_script"
+        exit 0
+    fi
+}
+edit_script_config(){
+    eval "$TERMEDIT $SCRIPTPATH'config'"
+exit 0;
+}
+edit_configs(){
+    conf_edit="$(echo -e "$conf_list" |sort | dmenu -p 'Select config to edit')"
+
+    case "$conf_edit" in
+       dwm)
+           conf_path="$dwm_conf_path";;
+       dwmblocks)
+           conf_path="$dwmblocks_conf_path";;
+       st)
+           conf_path="$st_conf_path";;
+       dmenu)
+           conf_path="$dmenu_conf_path";;
+       *)
+           if [[ -z "$conf_edit" ]]; then
+               exit 0;
+           fi
+           if [[ -n $(echo "$conf_list" | grep $conf_edit) ]]; then
+            conf_path="$dot_config_path/$conf_edit"
+           else
+               echo "Config does not exist"
+            exit 1
+           fi;;
+    esac
+    eval "$TERMEDIT $conf_path"
+
+}
+
+if [ $# -eq 0 ]; then
+    default
+fi
+
+$@
+exit 0

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+source config
+
+volinfo="$(amixer get Master | tail -n1)"
+volpercentage="$(echo "$volinfo" |sed -r 's/.*\[([0-9]+)%\].*/\1/')"
+
+if echo "$volinfo" | grep -q 'off'; then
+    volicon="󰖁"
+    icon_color=$s2d_colorf1
+elif [ "$volpercentage" -lt 10 ]; then
+    volicon="󰖁"
+    icon_color=$s2d_colorf1
+elif [ "$volpercentage" -lt 51 ]; then
+    volicon="󰖀"
+    icon_color=$s2d_colorf3
+else
+    volicon="󰕾"
+    icon_color=$s2d_colorf2
+fi
+printf "%s%s %s%%%s\n" "$icon_color" "$volicon" "$volpercentage" "$s2d_reset_color" && exit 0

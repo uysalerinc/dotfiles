@@ -1,0 +1,34 @@
+#!/bin/sh
+
+TERMEDIT="st -e nvim"
+SCRIPTPATH="~/.scripts/"
+
+        # S2D Configs
+# set colors from Xresources
+for i in {0..15}; do
+    color_xres="$(xrdb -get color${i})"
+    eval "s2d_colorf${i}=^c${color_xres}^" #foreground colors
+    eval "s2d_colorb${i}=^b${color_xres}^" #background colors
+done
+unset color_xres
+
+#draw a rectangle top left corner at x,y with w widht and h height
+#usage => printf "$draw_rect" x y w h
+draw_rect="^r%s,%s,%s,%s^"
+s2d_reset_color="^d^"
+
+        # Date Time Configs
+#Time Stamps
+DT_DAWN=5
+DT_MORNING=8
+DT_AFTERNOON=11
+DT_EVENING=15
+DT_DUSK=19
+
+#S2D Colors
+
+color_dawn="^c#ff92d0^"
+color_morning="^c#f4f99d^"
+color_afternoon="^c#ff6e67^"
+color_evening="^c#A7408B^"
+color_dusk="^c#ff79c6^"
