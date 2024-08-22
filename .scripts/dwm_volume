@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source config
+. config
 
 volinfo="$(amixer get Master | tail -n1)"
 volpercentage="$(echo "$volinfo" |sed -r 's/.*\[([0-9]+)%\].*/\1/')"

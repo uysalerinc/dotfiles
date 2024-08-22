@@ -1,5 +1,5 @@
 #!/bin/sh
-source config
+. config
 
 case "$(date '+%I')" in
     "01") clk_icon="" ;;
@@ -17,15 +17,15 @@ case "$(date '+%I')" in
 esac
 
 time_hour="$(date '+%H')"
-if [[ time_hour -gt DT_DUSK ]]; then
+if [ "$time_hour" -gt "$DT_DUSK" ]; then
     icon_color="$color_dusk" # #9F3379
-elif [[ time_hour -gt DT_EVENING ]]; then
+elif [ "$time_hour" -gt "$DT_EVENING" ]; then
     icon_color="$color_evening" # #A7408B
-elif [[ time_hour -gt DT_AFTERNOON ]]; then
+elif [ "$time_hour" -gt "$DT_AFTERNOON" ]; then
     icon_color="$color_afternoon" # #C83C63
-elif [[ time_hour -gt DT_MORNING ]]; then
+elif [ "$time_hour" -gt "$DT_MORNING" ]; then
     icon_color="$color_morning" # #F34C5E
-elif [[ time_hour -gt DT_DAWN ]]; then
+elif [ "$time_hour" -gt "$DT_DAWN" ]; then
     icon_color="$color_dawn" # #FF8120
 else
     icon_color="$color_dusk" # #9F3379

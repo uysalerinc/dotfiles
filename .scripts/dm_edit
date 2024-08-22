@@ -1,23 +1,50 @@
 #!/usr/bin/env sh
 
-# TODO: Remove grep pipe and use regex
-# TODO: execute TERMEDIT from default if given arg is valid config or script
+. config
 
-source config
+dwm_conf_path="$HOME/suckless/dwm/src"
+st_conf_path="$HOME/suckless/st/src/"
+dwmblocks_conf_path="$HOME/suckless/dwmblocks"
+dmenu_conf_path="$HOME/suckless/dmenu/src"
+dot_config_path="$HOME/.config/"
 
-dwm_conf_path="~/suckless/dwm/src"
-st_conf_path="~/suckless/st/src/"
-dwmblocks_conf_path="~/suckless/dwmblocks"
-dmenu_conf_path="~/suckless/dmenu/src"
-dot_config_path="~/.config/"
+dwm_script_prefix="dwm_"
+dm_script_prefix="dm_"
 
-conf_list="$( (echo -e 'dwm\ndwmblocks\nst\ndmenu' && ls -1 ~/.config/)|sort)"
+# conf_list=$( (printf 'dwm\ndwmblocks\nst\ndmenu' && ls -1 "$dot_config_path" |sort))
+conf_list="dwm\ndwmblocks\nst\ndmenu\n"
+
+for i in "$dot_config_path"*
+    do
+        tmp=$(echo "$i" | sed 's|'"$dot_config_path"'||')
+        conf_list="$conf_list$tmp\n"
+    done
+
+dwm_script_list=""
+dm_script_list=""
+g_script_list=""
+
+for i in "$SCRIPTPATH"*
+do
+    tmp=$(echo "$i" | sed 's|'"$SCRIPTPATH"'||')
+    case $tmp in
+        $dwm_script_prefix*)
+            dwm_script_list="$dwm_script_list$tmp\n";;
+        $dm_script_prefix*)
+            tmp=$(echo "$i" | sed 's|'"$SCRIPTPATH"'||')
+            dm_script_list="$dm_script_list$tmp\n";;
+        *config*)
+            ;;
+        *)
+            g_script_list="$g_script_list$tmp\n"
+            ;;
+    esac
+done
 
 
 default(){
 
-    prompt="-p Edit:"
-    sel_def="$(echo -e 'Configs\nScripts'|sort | dmenu $prompt)"
+    sel_def=$(printf 'Configs\nScripts'|sort | dmenu -p Edit:)
     case "$sel_def" in
         Configs) 
             edit_configs;;
@@ -31,7 +58,7 @@ default(){
 }
 select_script_group(){
 
-    sc_group="$(echo -e 'dwm\ndmenu\ngeneral\nconfig' | sort | dmenu -p 'Script Group')"
+    sc_group="$(printf 'dwm\ndmenu\ngeneral\nconfig' | sort | dmenu -p 'Script Group')"
     case "$sc_group" in
         dwm) 
             edit_dwm_scripts;;
@@ -48,25 +75,24 @@ select_script_group(){
 }
 
 edit_dwm_scripts(){
-
-    dw_script="$(ls -p ~/.scripts/ | grep dwm |sort | dmenu -p 'dwm scripts:')"
-    if [[ -n $dw_script ]]; then
-        eval "$TERMEDIT $SCRIPTPATH$dw_script"
+    dwm_script=$(printf '%b' "$dwm_script_list"| dmenu -p 'dwm scripts:')
+    if [ -n "$dwm_script" ]; then
+        eval "$TERMEDIT $SCRIPTPATH$dwm_script"
         exit 0
     fi
 }
 edit_dmenu_scripts(){
 
-    dm_script="$(ls -p ~/.scripts/ | grep dm |sort | dmenu -p 'dmenu scripts:')"
-    if [[ -n $dm_script ]]; then
+    dm_script=$(printf '%b' "$dm_script_list"| dmenu -p 'dmenu scripts:')
+    if [ -n "$dm_script" ]; then
         eval "$TERMEDIT $SCRIPTPATH$dm_script"
         exit 0
     fi
 }
 edit_general_scripts(){
 
-    g_script="$(ls -p ~/.scripts/ | grep -v dm |grep -v dwm| grep -v -w config | dmenu -p 'General Scripts:')"
-    if [[ -n $g_script ]]; then
+    g_script=$(printf '%b' "$g_script_list" | dmenu -p 'General Scripts:')
+    if [ -n "$g_script" ]; then
         eval "$TERMEDIT $SCRIPTPATH$g_script"
         exit 0
     fi
@@ -76,7 +102,7 @@ edit_script_config(){
 exit 0;
 }
 edit_configs(){
-    conf_edit="$(echo -e "$conf_list" |sort | dmenu -p 'Select config to edit')"
+    conf_edit="$(printf '%b' "$conf_list" |sort | dmenu -p 'Select config to edit')"
 
     case "$conf_edit" in
        dwm)
@@ -88,10 +114,10 @@ edit_configs(){
        dmenu)
            conf_path="$dmenu_conf_path";;
        *)
-           if [[ -z "$conf_edit" ]]; then
+           if [ -z "$conf_edit" ]; then
                exit 0;
            fi
-           if [[ -n $(echo "$conf_list" | grep $conf_edit) ]]; then
+           if echo "$conf_list" | grep -q "$conf_edit"; then
             conf_path="$dot_config_path/$conf_edit"
            else
                echo "Config does not exist"
@@ -102,9 +128,10 @@ edit_configs(){
 
 }
 
+
 if [ $# -eq 0 ]; then
     default
+else
+    "$@"
 fi
-
-$@
 exit 0

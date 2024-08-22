@@ -1,6 +1,6 @@
 #!/bin/sh
-source config
 
+. config
 
 mem_icon="󰍛"
 
@@ -10,17 +10,17 @@ total_mem_s2d="$(free -h | grep "^Mem" | awk '{print $2}' | sed s/i//g)"
 
 used_mem="$(free | grep "^Mem" | awk '{print $3}')"
 total_mem="$(free | grep "^Mem" | awk '{print $2}')"
-var_1=2
-h_mem=$(($total_mem/2))
-q_mem=$(($h_mem/2))
-hq_mem=$(($h_mem+$q_mem))
 
-if [ $used_mem -lt "$q_mem" ]; then
-    icon_color=$s2d_colorf2
-elif [ $used_mem -lt "$h_mem" ];then
-    icon_color=$s2d_colorf3
-elif [ $used_mem -lt "$hq_mem" ];then
-    icon_color=$s2d_colorf1
+h_mem=$((total_mem/2))
+q_mem=$((h_mem/2))
+hq_mem=$((h_mem+q_mem))
+
+if [ "$used_mem" -lt "$q_mem" ]; then
+    icon_color="$s2d_colorf2"
+elif [ "$used_mem" -lt "$hq_mem" ];then
+    icon_color="$s2d_colorf3"
+else
+    icon_color="$s2d_colorf1"
 fi
 
 

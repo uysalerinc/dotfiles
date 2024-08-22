@@ -1,15 +1,17 @@
 #!/bin/sh
 
 TERMEDIT="st -e nvim"
-SCRIPTPATH="~/.scripts/"
+SCRIPTPATH="$HOME/.scripts/"
 
         # S2D Configs
 # set colors from Xresources
-for i in {0..15}; do
-    color_xres="$(xrdb -get color${i})"
+
+for i in $(seq 0 15); do
+    color_xres="$(xrdb -get color"${i}")"
     eval "s2d_colorf${i}=^c${color_xres}^" #foreground colors
     eval "s2d_colorb${i}=^b${color_xres}^" #background colors
 done
+
 unset color_xres
 
 #draw a rectangle top left corner at x,y with w widht and h height
