@@ -2,8 +2,8 @@
 
 . config
 
-mem_icon="󰍛"
-
+# mem_icon="󰍛"
+mem_icon=" "
 used_mem_s2d="$(free -h | grep "^Mem" | awk '{print $3}' | sed s/i//g)"
 total_mem_s2d="$(free -h | grep "^Mem" | awk '{print $2}' | sed s/i//g)"
 

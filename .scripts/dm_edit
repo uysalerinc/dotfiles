@@ -11,7 +11,6 @@ dot_config_path="$HOME/.config/"
 dwm_script_prefix="dwm_"
 dm_script_prefix="dm_"
 
-# conf_list=$( (printf 'dwm\ndwmblocks\nst\ndmenu' && ls -1 "$dot_config_path" |sort))
 conf_list="dwm\ndwmblocks\nst\ndmenu\n"
 
 for i in "$dot_config_path"*

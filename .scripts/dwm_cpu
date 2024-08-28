@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. config
+
+cpu_icon="󰍛"
+
+cpu_stats_before=$(awk '/^cpu / {print $2, $3, $4, $5, $6, $7, $8}' /proc/stat)
+idle_1=$(echo "$cpu_stats_before" | awk '{print $4}')
+sleep 2
+cpu_stats_after=$(awk '/^cpu / {print $2, $3, $4, $5, $6, $7, $8}' /proc/stat)
+idle_2=$(echo "$cpu_stats_after" | awk '{print $4}')
+
+total_1=""
+total_2=""
+
+for i in $cpu_stats_before
+do
+    total_1="$((total_1+i))"
+done
+
+for i in $cpu_stats_after
+do
+    total_2="$((total_2+i))"
+done
+
+total_diff=$((total_2 - total_1))
+idle_diff=$((idle_2 - idle_1))
+
+cpu_usage=$((100 * (total_diff - idle_diff) / total_diff))
+
+icon_color="$s2d_colorf2"
+
+printf "%s%s %s%%%s\n" "$icon_color" "$cpu_icon" "$cpu_usage" "$s2d_reset_color" && exit 0
