@@ -2,21 +2,15 @@
 
 ## Setup
 - Distro: [Arch Linux](https://archlinux.org/ "Arch Linux")
-- Window Manager: [AwesomeWM](https://github.com/awesomeWM/awesome "AwesomeWM")
-- Compositor: [Picom](https://github.com/yshui/picom "Picom")
-- Terminal: [Alacritty](https://github.com/alacritty/alacritty "Alacritty")
+- Window Manager: [dwl](https://codeberg.org/dwl/dwl "dwl") ([My Fork](https://codeberg.org/uysalerinc/dwl "My Fork"))
+- Terminal: [st](https://st.suckless.org/ "st") ([My Fork](https://codeberg.org/uysalerinc/st "My Fork"))
 - Editor: [Neovim](https://github.com/neovim/neovim "Neovim")
-- File Browser: [Ranger](https://github.com/ranger/ranger "Ranger") (CLI) [Nautilus](https://github.com/GNOME/nautilus "Nautilus") (GUI)
+- File Browser: [Ranger](https://github.com/ranger/ranger "Ranger") (CLI) [Dolphin](https://apps.kde.org/dolphin/ "Dolphin") (GUI)
 - Shell: [Zsh](https://www.zsh.org/ "zsh") with [OhMyZsh](https://github.com/ohmyzsh/ohmyzsh "OhMyZsh")
-- Note Taking: Emacs
 
 ## Other Dependencies
 
 | Dependency  | Description |  Where I Use It|
 | ------------ | ------------ |--|
-| [Rofi](https://github.com/davatorium/rofi "Rofi")  | Application launcher, window switcher  | Same as description |
 | Hack Nerd Font  |  Personal favorite Nerd Font with icons | Terminal and Neovim plugin dependencies |
 | Font Awesome 6 | Font and icon toolkit | Icons |
-| [feh](https://github.com/derf/feh "feh") | Image wiever | Wallpaper manager |
-| Scrot | Screenshooter | Scripts |
-| xclip | Clipboard | Clipboard Manager |
