@@ -3,7 +3,7 @@
 ## Setup
 - Distro: [Arch Linux](https://archlinux.org/ "Arch Linux")
 - Window Manager: [dwl](https://codeberg.org/dwl/dwl "dwl") ([My Fork](https://codeberg.org/uysalerinc/dwl "My Fork"))
-- Terminal: [st](https://st.suckless.org/ "st") ([My Fork](https://codeberg.org/uysalerinc/st "My Fork"))
+- Terminal: [st](https://st.suckless.org/ "st") ([My Fork](https://github.com/uysalerinc/st "st"))
 - Editor: [Neovim](https://github.com/neovim/neovim "Neovim")
 - File Browser: [Ranger](https://github.com/ranger/ranger "Ranger") (CLI) [Dolphin](https://apps.kde.org/dolphin/ "Dolphin") (GUI)
 - Shell: [Zsh](https://www.zsh.org/ "zsh") with [OhMyZsh](https://github.com/ohmyzsh/ohmyzsh "OhMyZsh")
